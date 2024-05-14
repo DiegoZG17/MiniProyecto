@@ -1,3 +1,4 @@
+@if (Auth::check() && Auth::user()->role == 'Supervisor')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,3 +35,6 @@
 </table>
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Supervisor' pueden acceder a esta vista.</p>
+@endif

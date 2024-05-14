@@ -1,3 +1,4 @@
+@if (Auth::check() && Auth::user()->role == 'Cliente')
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -90,14 +91,14 @@
                 
                 <div class="container-additional-information">
 				<div class="question-form">
-    <h3>Enviar Pregunta</h3>
-    <form action="/pregunta" method="POST">
-	@csrf
-    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-    <input type="text" name="question" placeholder="Escribe tu pregunta aquí...">
-    <button type="submit">Enviar Pregunta</button>
-</form>
-</div>
+					<h3>Enviar Pregunta</h3>
+					<form id="question-form" action="/pregunta" method="POST">
+						@csrf
+						<input type="hidden" name="producto_id" value="{{ $producto->id }}">
+						<input type="text" name="question" placeholder="Escribe tu pregunta aquí...">
+						<button type="submit">Enviar Pregunta</button>
+					</form>
+				</div>
 
 <div class="question-list">
     <h3>Preguntas y Respuestas</h3>
@@ -120,7 +121,40 @@
 			src="https://kit.fontawesome.com/81581fb069.js"
 			crossorigin="anonymous"
 		></script>
-		<script src="{{asset('js/showproducto.js')}}"></script> 
+
+
+		
+		<script src="{{asset('js/showproducto.js')}}">
+	document.addEventListener('DOMContentLoaded', function() {
+				const form = document.querySelector('#question-form');
+
+				form.addEventListener('submit', function(event) {
+					event.preventDefault();
+
+					const formData = new FormData(this);
+					const url = this.action;
+
+					fetch(url, {
+						method: 'POST',
+						body: formData,
+						headers: {
+							'X-Requested-With': 'XMLHttpRequest',
+						},
+					})
+					.then(response => response.json())
+					.then(data => {
+						// Aquí puedes actualizar la lista de preguntas y respuestas
+						// Por ejemplo, podrías agregar la nueva pregunta a '.question-list'
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+				});
+			});
+		</script>
 	</body>
 	
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Cliente' pueden acceder a esta vista.</p>
+@endif

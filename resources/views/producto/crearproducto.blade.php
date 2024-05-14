@@ -1,3 +1,4 @@
+@if (Auth::check() && (Auth::user()->role == 'Vendedor' || Auth::user()->role == 'Supervisor'))
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,7 +30,8 @@
 </head>
 <body>
  <h2>Formulario para crear productos</h2>
- <form action="{{route('altapro')}}" method="POST" enctype="application/x-www-form-urlencoded">
+ <form action="{{route('altapro')}}" method="POST" enctype="multipart/form-data">
+
   @csrf
   <label for='nombre'>Nombre</label>
   <input type='text' name='nombre' id='nombre' required>
@@ -61,7 +63,8 @@
   <input type='number' name='precio' id='precio' required>
 
   <label for='fotos'>Foto</label>
-<input type='text' name='fotos' id='fotos' value='imagenes/' required>
+<input type='file' name='fotos' id='fotos' required>
+
 
   <label for='categoria_id'>ID de Categoría</label>
 <select name="categoria_id" id="categoria_id" required>
@@ -78,3 +81,6 @@
  </form>
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Vendedor' o 'Supervisor' pueden acceder a esta vista.</p>
+@endif

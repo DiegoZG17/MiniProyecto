@@ -14,15 +14,23 @@ class CategoriaSeeder extends Seeder
     public function run(): void
     {
         $nueva = new Categoria();
-        $nueva->nombre="Electronica";
-        $nueva->save();
-        $nueva = new Categoria();
-        $nueva->nombre="Hogar";
+        $nueva->nombre="Perros";
         $nueva->save();
 
         $nueva = new Categoria();
-        $nueva->nombre="Juegos";
+        $nueva->nombre="Gatos";
         $nueva->save();
 
+        $nueva = new Categoria();
+        $nueva->nombre="Peces";
+        $nueva->save();
+
+        $nueva = new Categoria();
+        $nueva->nombre="Reptiles";
+        $nueva->save();
+
+        $nueva = new Categoria();
+        $nueva->nombre="Otras mascotas";
+        $nueva->save();
     }
 }

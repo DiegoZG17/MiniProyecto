@@ -1,4 +1,3 @@
-@if (Auth::check() && (Auth::user()->role == 'Contador' || Auth::user()->role == 'Supervisor'))
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,30 +23,20 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{ route('pagos.ver') }}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Store</span>
+					<span class="text">Vendedores</span>
 				</a>
 			</li>
+
 			<li>
 				<a href="{{ route('transacciones.ver') }}">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Vouchers</span>
 				</a>
 			</li>
-
-            <a href="{{ route('verpro') }}">
-    <i class='bx bxs-basket' ></i>
-    <span class="text">Producto</span>
-  </a>
-</li>
 			
-			<li>
-				<a href="{{ route('lista') }}">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Team</span>
-				</a>
-			</li>
+			
 			
 
 
@@ -83,7 +72,6 @@
 					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>
-
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">
@@ -243,7 +231,3 @@
 	<script src="{{asset('js/bienvenido.js')}}"></script>
 </body>
 </html>
-
-@else
-    <p>Lo siento, solo los usuarios de tipo 'Contador' o 'Supervisor' pueden acceder a esta vista.</p>
-@endif

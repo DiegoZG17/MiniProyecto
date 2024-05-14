@@ -26,4 +26,16 @@ class Producto extends Model
     return $this->hasMany(Carrito::class);
 }
 
+
+    
+    
+        
+
+    // en App\Models\Producto.php
+public function vendedor()
+{
+    // Asegúrate de que esta relación exista y esté correctamente definida.
+    return $this->belongsTo(Usuario::class, 'usuario_id');
+}
+
 }

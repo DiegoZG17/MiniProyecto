@@ -1,3 +1,7 @@
+@if (Auth::check() && (Auth::user()->role == 'Encargado' || Auth::user()->role == 'Supervisor'|| Auth::user()->role == 'Vendedor'))
+    <!-- Aquí va el código de tu vista para los usuarios de tipo 'Encargado' o 'Cliente' -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,3 +140,6 @@ function search() {
 
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Encargado' , 'Supervisor' y Vendedor pueden acceder a esta vista.</p>
+@endif

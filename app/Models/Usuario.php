@@ -21,4 +21,11 @@ class Usuario  extends Authenticatable
 {
     return $this->hasMany(Carrito::class);
 }
+
+public function productos()
+    {
+        return $this->hasMany(Producto::class, 'propietario_id');
+    }
+
+    
 }

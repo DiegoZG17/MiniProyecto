@@ -43,7 +43,7 @@ class ProductosController extends Controller
 
     
     
-public function store(Request $request)
+    public function store(Request $request)
 {
     $request->validate([
         'nombre' => 'required',
@@ -52,7 +52,7 @@ public function store(Request $request)
         'descripcion' => 'required',
         'cantidad' => 'required',
         'precio' => 'required',
-        'fotos'=> 'required',
+        'fotos'=> 'required|image',
         'categoria_id' => 'required',
         'propietario_id' => 'required',
     ]);
@@ -64,7 +64,14 @@ public function store(Request $request)
     $producto->descripcion = $request->descripcion;
     $producto->cantidad = $request->cantidad;
     $producto->precio = $request->precio;
-    $producto->fotos = $request->fotos; 
+
+    if ($request->hasFile('fotos')) {
+        $file = $request->file('fotos');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('imagenes'), $fileName);
+        $producto->fotos = 'imagenes/' . $fileName;
+    }
+
     $producto->categoria_id = $request->categoria_id;
     $producto->propietario_id = $request->propietario_id;
 
@@ -72,6 +79,8 @@ public function store(Request $request)
 
     return redirect()->route('verpro');
 }
+
+    
 
 
 

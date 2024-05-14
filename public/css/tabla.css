@@ -17,6 +17,49 @@ body {
 	transform: translate(-50%, -50%);
 }
 
+#productTable {
+    width: 100%; /* La tabla ocupará el 100% del ancho del contenedor */
+    overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es demasiado ancho */
+    display: block; /* Hace que la tabla se comporte como un bloque, necesario para que funcione overflow */
+}
+
+#productTable thead {
+    display: inline-block; /* Hace que el encabezado de la tabla se comporte como un bloque en línea */
+    width: 100%; /* El encabezado de la tabla ocupará el 100% del ancho de la tabla */
+    overflow-y: scroll; /* Permite el desplazamiento vertical si el contenido es demasiado alto */
+}
+
+#productTable tbody {
+    max-height: 300px; /* Altura máxima del cuerpo de la tabla */
+    display: inline-block; /* Hace que el cuerpo de la tabla se comporte como un bloque en línea */
+    overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es demasiado alto */
+    width: 100%; /* El cuerpo de la tabla ocupará el 100% del ancho de la tabla */
+}
+
+
+
+.container {
+    width: 100%; /* La tabla ocupará el 100% del ancho del contenedor */
+    overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es demasiado ancho */
+    display: block; /* Hace que la tabla se comporte como un bloque, necesario para que funcione overflow */
+}
+
+.container thead {
+    display: inline-block; /* Hace que el encabezado de la tabla se comporte como un bloque en línea */
+    width: 100%; /* El encabezado de la tabla ocupará el 100% del ancho de la tabla */
+    overflow-y: scroll; /* Permite el desplazamiento vertical si el contenido es demasiado alto */
+}
+
+.container tbody {
+    max-height: 300px; /* Altura máxima del cuerpo de la tabla */
+    display: inline-block; /* Hace que el cuerpo de la tabla se comporte como un bloque en línea */
+    overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es demasiado alto */
+    width: 100%; /* El cuerpo de la tabla ocupará el 100% del ancho de la tabla */
+}
+
+
+
+
 table {
 	width: 800px;
 	border-collapse: collapse;

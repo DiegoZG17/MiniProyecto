@@ -1,3 +1,4 @@
+@if (Auth::check() && Auth::user()->role == 'Cliente')
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,6 +18,7 @@
                     <th>Total</th>
                     <th>Productos</th>
                     <th>Fecha de Compra</th>
+                    <th>Subir archivo (5 letras Max.)</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +34,20 @@
                         </ul>
                     </td>
                     <td>{{ $compra->created_at }}</td>
+                    <td>
+                        
+                    <form method="POST" action="/compras/{{ $compra->id }}/upload" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="file">
+    <input type="hidden" name="compra_id" value="{{ $compra->id }}">
+    <button type="submit">Subir comprobante de pago</button>
+</form>
+
+</td>
+
+                    
                 </tr>
+                
                 @endforeach
             </tbody>
         </table>
@@ -41,3 +56,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Cliente' pueden acceder a esta vista.</p>
+@endif

@@ -1,3 +1,4 @@
+@if (Auth::check() && Auth::user()->role == 'Cliente')
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,6 +14,7 @@
         <section class="order-details">
             <h2>Detalles de tu Orden</h2>
             <table class="table">
+                
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -63,3 +65,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Cliente' pueden acceder a esta vista.</p>
+@endif

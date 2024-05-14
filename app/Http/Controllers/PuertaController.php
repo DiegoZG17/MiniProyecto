@@ -61,7 +61,7 @@ PAGINA;
           Auth::login($encontrado);
           $categorias = Categoria::all();
           $productos = Producto::all();
-          $productos = \App\Models\Producto::where('estado', 'consignado')->get();
+$productos = \App\Models\Producto::where('estado', 'consignado')->get();
 
           switch ($encontrado->role) {
             case 'Cliente':
@@ -80,6 +80,11 @@ PAGINA;
 
               case 'Vendedor':
                 return view('layouts.Vendedor');
+
+                break;
+
+              case 'Contador':
+                return view('contador.iniciocontador');
           }
 
 

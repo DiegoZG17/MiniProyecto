@@ -3,8 +3,9 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ContadorController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PagoController;
 
 use App\Http\Controllers\UsuarioController;
 use App\Models\Categoria;
@@ -116,6 +117,19 @@ Route::post('/compras', [CompraController::class, 'store'])->name('compras.store
 
 
 Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
-Route::post('/compras', [CompraController::class, 'store'])->name('compras.store');
 
 
+Route::post('/compras/{id}/upload', [CompraController::class, 'subir'])->name('compra.subir');
+
+////contador
+
+Route::get('/listatransacciones', [ContadorController::class, 'transacciones'])->name('transacciones.ver');
+
+
+Route::get('/listatransacciones/{id}/editar', [ContadorController::class, 'verformu'])->name('transacciones.formu');
+
+
+Route::put('/listatransacciones/{id}', [ContadorController::class, 'mandarformu'])->name('transacciones.update');
+/////pago
+
+Route::get('/listadepagos', [PagoController::class, 'listapagos'])->name('pagos.ver');

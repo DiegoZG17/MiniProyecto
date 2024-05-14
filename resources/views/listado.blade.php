@@ -1,6 +1,4 @@
-@if ( is_null(Auth::user()) )
-  primero debes iniciar    
-@else
+@if (Auth::check() && (Auth::user()->role == 'Encargado' || Auth::user()->role == 'Supervisor' ))
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,5 +78,9 @@
 
 <script src="{{asset('js/tabla.js')}}"></script> 
 </body>
-</html>    
-@endif
+</html>  
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Encargado' y Supervisor pueden acceder a esta vista.</p>
+@endif  
+
+

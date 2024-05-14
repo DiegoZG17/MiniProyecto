@@ -11,16 +11,30 @@ use Illuminate\Support\Facades\Auth;
 class CarritoController extends Controller
 {
     public function add(Request $request, $id)
-    {
-        $producto = Producto::find($id);
+{
+    $producto = Producto::find($id);
+
+    // Obtén la cantidad que el usuario quiere comprar
+    $cantidadComprar = $request->input('cantidad');
+
+    // Verifica si hay suficiente producto en stock
+    if ($producto->cantidad >= $cantidadComprar) {
+        // Resta la cantidad comprada del stock del producto
+        $producto->cantidad -= $cantidadComprar;
+        $producto->save();
+
         $carrito = new Carrito();
         $carrito->usuario_id = Auth::id();
         $carrito->producto_id = $producto->id;
-        $carrito->cantidad = $request->input('cantidad');
+        $carrito->cantidad = $cantidadComprar;
         $carrito->save();
 
         return redirect()->route('carrito.index');
+    } else {
+        // No hay suficiente producto en stock
+        return redirect()->route('carrito.index')->with('error', 'No hay suficiente producto en stock.');
     }
+}
 
     public function index()
     {

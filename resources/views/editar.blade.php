@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+@if (Auth::check() && (Auth::user()->role == 'Encargado' || Auth::user()->role == 'Supervisor'))
 <html lang="es">
 <head>
  <meta charset="UTF-8">
@@ -79,3 +79,6 @@
 </form>
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Encargado' y 'Supervisor' pueden acceder a esta vista.</p>
+@endif

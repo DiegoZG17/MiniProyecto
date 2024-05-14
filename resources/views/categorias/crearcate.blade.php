@@ -1,3 +1,4 @@
+@if (Auth::check() && (Auth::user()->role == 'Encargado' || Auth::user()->role == 'Supervisor'))
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,7 +29,7 @@
  </style>
 </head>
 <body>
- <h2>Formulario para crear usuarios</h2>
+ <h2>Formulario para crear categorias</h2>
  <form action="{{route('categorias.store')}}" method="POST" enctype="application/x-www-form-urlencoded">
   @csrf
   <label for='nombre'>Nombre</label>
@@ -39,3 +40,6 @@
  </form>
 </body>
 </html>
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Encargado' o 'Supervisor' pueden acceder a esta vista.</p>
+@endif

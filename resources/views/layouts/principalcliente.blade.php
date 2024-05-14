@@ -1,3 +1,5 @@
+@if (Auth::check() && Auth::user()->role == 'Cliente')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +63,7 @@
 
 
 
-    <a href="#productos">Productos</a>
+    <a href="/carrito">CARRITO</a>
     <a href="/compras">Compras</a>
     <a href="#contact">Mensaje</a>
     <select id="categoriaSelect">
@@ -104,3 +106,6 @@ document.getElementById('categoriaSelect').addEventListener('change', function()
 </script>
 </body>
 </html>
+@else
+<p>Lo siento, solo los usuarios de tipo 'Cliente' pueden acceder a esta vista.</p>
+@endif

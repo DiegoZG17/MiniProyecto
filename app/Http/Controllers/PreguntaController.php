@@ -5,20 +5,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Pregunta; // Importa el modelo Pregunta correctamente
 
+use App\Models\Categoria;
+use App\Models\Producto;
+
 class PreguntaController extends Controller
 {
     public function store3(Request $request)
-    {
-        // Aquí guardarías la pregunta en la base de datos
-        $pregunta = new Pregunta;
-$pregunta->contenido = $request->input('question');
-$pregunta->usuario_id = Auth::user()->id; // Asegúrate de tener autenticación
-$pregunta->producto_id = $request->input('producto_id'); // Obtén el id del producto del request
-$pregunta->save();
-        
+{
+    // Aquí guardarías la pregunta en la base de datos
+    $pregunta = new Pregunta;
+    $categorias = Categoria::all(); // Asume que tienes un modelo llamado 'Categoria'
+    $productos = Producto::all(); // Asume que tienes un modelo llamado 'Producto'
 
-        return view('layouts.principalcliente'); // Redirige a donde quieras después de guardar la pregunta
-    }
+    $pregunta->contenido = $request->input('question');
+    $pregunta->usuario_id = Auth::user()->id; // Asegúrate de tener autenticación
+    $pregunta->producto_id = $request->input('producto_id'); // Obtén el id del producto del request
+    $pregunta->save();
+
+    return view('layouts.principalcliente', ['categorias' => $categorias],['productos' => $productos]);
+}
 
     public function index3()
     {
@@ -41,7 +46,7 @@ $pregunta->save();
     $pregunta->save();
 
     // Redirige a donde quieras después de guardar la respuesta
-    view('bienvenido');
+    view('preguntas.respuestas');
 
 
 }
