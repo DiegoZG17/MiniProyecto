@@ -1,3 +1,5 @@
+<?php
+
 use Illuminate\Database\Seeder;
 use App\Models\Pregunta;
 use App\Models\Producto;
