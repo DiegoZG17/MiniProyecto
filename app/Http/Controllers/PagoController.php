@@ -26,7 +26,7 @@ class PagoController extends Controller
             
             if ($productoObj) {
                 // Buscamos a todos los vendedores basados en el proprietario_id que tengan el rol 'Vendedor'
-                $vendedores = Usuario::where('id', $productoObj->proprietario_id)
+                $vendedores = Usuario::where('id', $productoObj->propietario_id)
                                      ->where('role', 'Vendedor')
                                      ->get();
 
