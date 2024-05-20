@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\Compra;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -111,7 +112,7 @@ public function update(Request $request, Producto $producto)
         'descripcion' => 'required',
         'cantidad' => 'required',
         'precio' => 'required',
-        'fotos'=> 'required',
+        'fotos' => 'nullable|image',
         'categoria_id' => 'required',
         'propietario_id' => 'required',
     ]);
@@ -122,9 +123,19 @@ public function update(Request $request, Producto $producto)
         $producto->fecha_publicacion = $request->fecha_publicacion;
         $producto->descripcion = $request->descripcion;
         $producto->cantidad = $request->cantidad;
-        $producto->fotos = $request->fotos;
-        
         $producto->precio = $request->precio;
+
+        // Si se sube una nueva foto, reemplazar la existente
+        if ($request->hasFile('fotos')) {
+            // Eliminar la foto antigua si existe
+            Storage::delete($producto->fotos);
+            
+            // Guardar la nueva foto
+            $file = $request->file('fotos');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('imagenes'), $fileName);
+            $producto->fotos = 'imagenes/' . $fileName;
+        }
     }
 
     if(auth()->user()->role == 'Encargado') {
@@ -155,7 +166,9 @@ public function destroy(Producto $producto)
     }
 
     // Eliminar el archivo de imagen, si es necesario
-    Storage::delete($producto->fotos);
+    if ($producto->fotos && file_exists(public_path($producto->fotos))) {
+        unlink(public_path($producto->fotos));
+    }
 
     // Eliminar el producto de la base de datos
     $producto->delete();
@@ -193,6 +206,15 @@ public function showpro($id)
     return view('producto.showproducto', compact('producto', 'preguntas', 'ruta_imagen')); 
 }
 
+public function verkardex($id)
+{
+    $producto = Producto::with(['preguntas'])->findOrFail($id);
+
+    // Obtener las compras que contienen este producto
+    $compras = Compra::where('productos', 'LIKE', '%"id":' . $id . ',%')->get();
+
+    return view('producto.kardex', compact('producto', 'compras'));
+}
 
 
 

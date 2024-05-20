@@ -6,11 +6,24 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=2.0">
  <title>Document</title>
  <link rel="stylesheet" href="{{asset('css/tabla.css')}}">
+ 
 </head>
 <body>
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="location.href='{{route('crearpro')}}'" type="button" class="crear-producto">
+        CREAR PRODUCTO
+    </button>
+
+    
+    @if ($usuarioActual->role == 'Supervisor')
+    <button onclick="location.href='{{route('historialuse')}}'" type="button" class="ver-historial">
+        VER HISTORIAL
+    </button>
+@endif
+</div>
   
  <div class="container">
  <ul class="box-info">
@@ -22,6 +35,7 @@
             <p>Productos Propuestos</p>
         </span>
     </li>
+    <br>
     <li>
         <i class='bx bxs-box'></i>
         <span class="text">
@@ -30,6 +44,7 @@
         </span>
     </li>
 </ul>
+<br>
 
     <input type="text" id="search" onkeyup="search()" placeholder="Buscar por categoría...">
 	
@@ -91,6 +106,13 @@
         </div>
         <span>Eliminar</span>
     </button>
+<br>
+
+@if ($usuarioActual->role == 'Supervisor')
+    <button onclick="location.href='{{ route('kardex.ver', ['id' => $producto->id]) }}'" type="button" class="ver-historial">
+        VER KARDEX
+    </button>
+@endif
 </form>
 
 		          </td>
@@ -101,16 +123,11 @@
 		</tbody>
 	</table>
 </div>
-<br><br><br>
+<br><br>
 
-<button onclick="location.href='{{route('crearpro')}}'" type="button" class="crear-producto">
-    CREAR PRODUCTO
-</button>
-@if ($usuarioActual->role == 'Supervisor')
-    <button onclick="location.href='{{route('historialuse')}}'" type="button" class="ver-historial">
-        VER HISTORIAL
-    </button>
-@endif
+
+<br><br>
+
 
 
 
@@ -125,7 +142,7 @@ function search() {
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[8];
+    td = tr[i].getElementsByTagName("td")[9];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

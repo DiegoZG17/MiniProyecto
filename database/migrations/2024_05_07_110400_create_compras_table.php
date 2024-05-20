@@ -15,6 +15,7 @@ class CreateComprasTable extends Migration
             $table->json('productos'); // Almacenar detalles del producto como JSON
             $table->string('estado', 20)->default('pendiente');
             $table->timestamps();
+            $table->string('pago', 20)->default('null');
         });
     }
 

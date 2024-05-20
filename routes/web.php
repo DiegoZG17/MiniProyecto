@@ -101,7 +101,7 @@ Route::get('/historial', [UsuarioController::class, 'historial'])->name('histori
 
 
 
-Route::post('/carrito/add/{id}', [CarritoController::class, 'add'])->name('carrito.add');
+//Route::post('/carrito/add/{id}', [CarritoController::class, 'add'])->name('carrito.add');
 
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
 
@@ -111,6 +111,12 @@ Route::get('/checkout', [CarritoController::class, 'checar'])->name('checkout.in
 Route::patch('/carrito/update/{id}', [CarritoController::class, 'update'])->name('carrito.update');
 
 Route::delete('/carrito/remove/{id}', [CarritoController::class, 'remove'])->name('carrito.remove');
+//////carrito2
+Route::post('/carrito/agregar/{id}', [CarritoController::class, 'add'])->name('carrito.agregar');
+Route::post('/comprar/finalizar', [CarritoController::class, 'finalizePurchase'])->name('comprar.finalizar');
+
+
+
 
 ////compra
 Route::post('/compras', [CompraController::class, 'store'])->name('compras.store');
@@ -129,7 +135,12 @@ Route::get('/listatransacciones', [ContadorController::class, 'transacciones'])-
 Route::get('/listatransacciones/{id}/editar', [ContadorController::class, 'verformu'])->name('transacciones.formu');
 
 
+
 Route::put('/listatransacciones/{id}', [ContadorController::class, 'mandarformu'])->name('transacciones.update');
 /////pago
 
+Route::get('/misPagos', [PagoController::class, 'index'])->name('ver.pagos');
+Route::post('/procesar-pago', [PagoController::class, 'procesarPago']);
 Route::get('/listadepagos', [PagoController::class, 'listapagos'])->name('pagos.ver');
+///kardex
+Route::get('/kardex/{id}', [ProductosController::class, 'verkardex'])->name('kardex.ver');

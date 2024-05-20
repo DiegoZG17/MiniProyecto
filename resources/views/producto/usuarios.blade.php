@@ -4,31 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de usuario</title>
+    <title>Historial de ventas por vendedor</title>
 </head>
 <body>
 <table style="width:100%; height:100%;">
-    <thead>
+<thead>
         <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Fecha de Registro</th>
-            <th>Productos Consignados</th>
+            <th>ID Vendedor</th>
+            <th>Nombre Vendedor</th>
+            <th>Fecha de Alta</th>
+            <th>Productos en Consignación</th>
+            <th>Total Ventas</th>
         </tr>
     </thead>
     <tbody>
-        @forelse ($usuarios as $usuario)
-            @if ($usuario->rol != 'Cliente')
-                <tr>
-                    <td style="vertical-align:middle; text-align:center;"> {{$usuario->id}} </td>
-                    <td style="vertical-align:middle; text-align:center;"> {{$usuario->nombre}} </td>
-                    <td style="vertical-align:middle; text-align:center;"> {{$usuario->created_at}} </td>
-                    <td style="vertical-align:middle; text-align:center;"> {{$usuario->productos->where('estado', 'consignado')->count()}} </td>
-                </tr>
-            @endif
+        @forelse ($ventasPorVendedor as $vendedorId => $venta)
+            <tr>
+                <td style="vertical-align:middle; text-align:center;">{{$vendedorId}}</td>
+                <td style="vertical-align:middle; text-align:center;">{{$venta['nombre_vendedor']}}</td>
+                <td style="vertical-align:middle; text-align:center;">{{$venta['fecha_alta']}}</td>
+                <td style="vertical-align:middle; text-align:center;">{{$venta['productos_consignados']}}</td>
+                <td style="vertical-align:middle; text-align:center;">{{$venta['ventas']}}</td>
+            </tr>
         @empty
             <tr>
-                <td colspan="4" style="vertical-align:middle; text-align:center;">No hay usuarios con productos consignados.</td>
+                <td colspan="5" style="vertical-align:middle; text-align:center;">No hay ventas registradas.</td>
             </tr>
         @endforelse
     </tbody>

@@ -29,7 +29,7 @@
 </head>
 <body>
  <h2>Formulario para editar productos</h2>
- <form action="{{route('actualizarProducto', $producto->id)}}" method="POST" enctype="application/x-www-form-urlencoded">
+ <form action="{{route('actualizarProducto', $producto->id)}}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 
@@ -56,10 +56,12 @@
   <input type='number' name='cantidad' id='cantidad' value="{{$producto->cantidad}}" required>
 
   <label for='precio'>Precio</label>
-<input type='number' name='precio' id='precio' value="{{$producto->precio}}" required>
+  <input type='number' name='precio' id='precio' value="{{$producto->precio}}" required>
 
-<label for='precio'>Foto</label>
-<input type='text' name='fotos' id='fotos' value="{{$producto->fotos}}" required>
+  <label for='fotos'>Foto Actual</label>
+  <img src="{{ asset($producto->fotos) }}" alt="Foto del Producto" width="100">
+  <label for='fotos'>Actualizar Foto</label>
+  <input type='file' name='fotos' id='fotos'>
 
   <label for='categoria_id'>ID de Categoría</label>
   <input type="text" name="categoria_id" id="categoria_id" value="{{ $producto->categoria_id }}" readonly>
@@ -67,9 +69,6 @@
   <label for='propietario_id'>ID de Propietario</label>
   <input type="text" name="propietario_id" id="propietario_id" value="{{ $producto->propietario_id }}" readonly>
 
-
-
-  
   <input type="submit" value="Actualizar">
  </form>
 </body>

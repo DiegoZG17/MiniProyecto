@@ -5,8 +5,8 @@
         .card {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
-            width: 30%;
-            margin: 20px;
+            width: 100%;
+            margin: 20px 0;
         }
         .card:hover {
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -52,6 +52,15 @@
             float: right;
             color: #ffffff;
         }
+        .productos-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +79,7 @@
   <a href="/login" class="logout"><i class='bx bxs-log-out-circle'></i><span class="text">Salir</span></a>
 </div>
 
-<div id="productosContainer">
+<div id="productosContainer" class="productos-container">
     @forelse ($productos as $producto)
     <div class="card" data-categoria-id="{{ $producto->categoria_id }}">
         <div class="container">
