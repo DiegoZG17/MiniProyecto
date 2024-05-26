@@ -39,7 +39,7 @@
 							<i class="fa-solid fa-chevron-down" id="decrement"></i>
 						</div>
 					</div>
-					<form method="POST" action="{{ route('carrito.add', $producto->id) }}">
+					<form method="POST" action="{{ route('carrito.agregar', $producto->id) }}">
     @csrf
     <input type="number" name="cantidad" value="1" min="1" max="{{$producto->cantidad}}">
     <button type="submit">Añadir al Carrito</button>

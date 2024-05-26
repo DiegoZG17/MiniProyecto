@@ -18,5 +18,7 @@ class Pago extends Model
     {
         return $this->belongsTo(Usuario::class, 'contador_id');
     }
+
+    
 }
 

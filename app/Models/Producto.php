@@ -38,4 +38,13 @@ public function vendedor()
     return $this->belongsTo(Usuario::class, 'usuario_id');
 }
 
+public function compras()
+{
+    return $this->hasMany(Compra::class);
+}
+
+
+
+   
+
 }

@@ -6,6 +6,8 @@ use App\Models\Usuario;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Producto;
+use App\Models\Categoria;
 
 class UsuarioSeeder extends Seeder
 {
@@ -16,17 +18,17 @@ class UsuarioSeeder extends Seeder
     {
         $nuevo = new Usuario();
         $nuevo->correo = 'cliente1@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Comprador1";
         $nuevo->genero = 'Masculino';
         $nuevo->clave = Hash::make('cliente1@gmail.com');
         $nuevo->role = 'Cliente';
         $nuevo->save();
-        //
+
         $nuevo = new Usuario();
         $nuevo->correo = 'cliente2@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Comprador2";
         $nuevo->genero = 'Femenino';
@@ -36,27 +38,27 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'cliente3@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Comprador3";
         $nuevo->genero = 'Masculino';
         $nuevo->clave = Hash::make('cliente3@gmail.com');
         $nuevo->role = 'Cliente';
         $nuevo->save();
-        
+
         $nuevo = new Usuario();
         $nuevo->correo = 'cliente4@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Comprador4";
         $nuevo->genero = 'Femenino';
-        $nuevo->clave = Hash::make('cliente5@gmail.com');
+        $nuevo->clave = Hash::make('cliente4@gmail.com');
         $nuevo->role = 'Cliente';
         $nuevo->save();
 
         $nuevo = new Usuario();
         $nuevo->correo = 'cliente5@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Comprador5";
         $nuevo->genero = 'Masculino';
@@ -66,17 +68,17 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'vendedor1@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Vendedor1";
         $nuevo->genero = 'Masculino';
         $nuevo->clave = Hash::make('vendedor1@gmail.com');
         $nuevo->role = 'Vendedor';
         $nuevo->save();
-        //
+
         $nuevo = new Usuario();
         $nuevo->correo = 'vendedor2@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Vendedor2";
         $nuevo->genero = 'Femenino';
@@ -86,37 +88,37 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'vendedor3@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Vendedor3";
         $nuevo->genero = 'Masculino';
         $nuevo->clave = Hash::make('vendedor3@gmail.com');
         $nuevo->role = 'Vendedor';
         $nuevo->save();
-        
+
         $nuevo = new Usuario();
         $nuevo->correo = 'vendedor4@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Vendedor4";
         $nuevo->genero = 'Femenino';
-        $nuevo->clave = Hash::make('vendedor5@gmail.com');
+        $nuevo->clave = Hash::make('vendedor4@gmail.com');
         $nuevo->role = 'Vendedor';
         $nuevo->save();
 
         $nuevo = new Usuario();
         $nuevo->correo = 'vendedor5@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Vendedor5";
         $nuevo->genero = 'Masculino';
         $nuevo->clave = Hash::make('vendedor5@gmail.com');
         $nuevo->role = 'Vendedor';
         $nuevo->save();
-        //
+
         $nuevo = new Usuario();
         $nuevo->correo = 'encargado1@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Encargado1";
         $nuevo->genero = 'Masculino';
@@ -126,7 +128,7 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'encargado2@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Encargado2";
         $nuevo->genero = 'Femenino';
@@ -136,7 +138,7 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'encargado3@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Encargado3";
         $nuevo->genero = 'Masculino';
@@ -146,7 +148,7 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'supervisor1@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Supervisor1";
         $nuevo->genero = 'Masculino';
@@ -156,7 +158,7 @@ class UsuarioSeeder extends Seeder
 
         $nuevo = new Usuario();
         $nuevo->correo = 'supervisor2@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Supervisor2";
         $nuevo->genero = 'Masculino';
@@ -165,13 +167,53 @@ class UsuarioSeeder extends Seeder
         $nuevo->save();
 
         $nuevo = new Usuario();
-        $nuevo->correo = 'contador@gmail.com';
-	    $nuevo->apellido_paterno = "N";
+        $nuevo->correo = 'contador1@gmail.com';
+        $nuevo->apellido_paterno = "N";
         $nuevo->apellido_materno = "N";
         $nuevo->nombre = "Contador1";
-        $nuevo->genero = 'Contador';
-        $nuevo->clave = Hash::make('contador@gmail.com');
-        $nuevo->role = 'Encargado';
+        $nuevo->genero = 'Masculino';
+        $nuevo->clave = Hash::make('contador1@gmail.com');
+        $nuevo->role = 'Contador';
+        $nuevo->save();
+
+        $nuevo = new Usuario();
+        $nuevo->correo = 'contador2@gmail.com';
+        $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_materno = "N";
+        $nuevo->nombre = "Contador2";
+        $nuevo->genero = 'Masculino';
+        $nuevo->clave = Hash::make('contador2@gmail.com');
+        $nuevo->role = 'Contador';
+        $nuevo->save();
+
+        $nuevo = new Usuario();
+        $nuevo->correo = 'contador3@gmail.com';
+        $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_materno = "N";
+        $nuevo->nombre = "Contador3";
+        $nuevo->genero = 'Femenino';
+        $nuevo->clave = Hash::make('contador3@gmail.com');
+        $nuevo->role = 'Contador';
+        $nuevo->save();
+
+        $nuevo = new Usuario();
+        $nuevo->correo = 'contador4@gmail.com';
+        $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_materno = "N";
+        $nuevo->nombre = "Contador4";
+        $nuevo->genero = 'Masculino';
+        $nuevo->clave = Hash::make('contador4@gmail.com');
+        $nuevo->role = 'Contador';
+        $nuevo->save();
+
+        $nuevo = new Usuario();
+        $nuevo->correo = 'contador5@gmail.com';
+        $nuevo->apellido_paterno = "N";
+        $nuevo->apellido_materno = "N";
+        $nuevo->nombre = "Contador5";
+        $nuevo->genero = 'Femenino';
+        $nuevo->clave = Hash::make('contador5@gmail.com');
+        $nuevo->role = 'Contador';
         $nuevo->save();
     }
 }

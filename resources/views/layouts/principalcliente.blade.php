@@ -1,13 +1,11 @@
 @if (Auth::check() && Auth::user()->role == 'Cliente')
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
-            width: 30%;
             margin: 20px;
         }
         .card:hover {
@@ -31,7 +29,6 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-       
         .navbar {
             background-color: #333;
             overflow: hidden;
@@ -55,14 +52,17 @@
             float: right;
             color: #ffffff;
         }
+        .productos-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
 <div class="navbar">
     <a href="#home">Inicio</a>
-
-
-
     <a href="/carrito">CARRITO</a>
     <a href="/compras">Compras</a>
     <a href="#contact">Mensaje</a>
@@ -76,18 +76,20 @@
 </div>
 
 <!-- HTML para mostrar productos -->
-@forelse ($productos as $producto)
-<div class="card" data-categoria-id="{{ $producto->categoria_id }}">
-    <div class="container">
-        <h2><b>{{ $producto->nombre }}</b></h2> 
-        <p>{{ $producto->descripcion }}</p>
-        <p class="price">${{ $producto->precio }}</p>
-        <button class="add-to-cart" onclick="window.location.href='{{ route('showpro', $producto->id) }}'">Ver detalles</button>
+<div id="productosContainer" class="productos-container">
+    @forelse ($productos as $producto)
+    <div class="card" data-categoria-id="{{ $producto->categoria_id }}">
+        <div class="container">
+            <h2><b>{{ $producto->nombre }}</b></h2> 
+            <p>{{ $producto->descripcion }}</p>
+            <p class="price">${{ $producto->precio }}</p>
+            <button class="add-to-cart" onclick="window.location.href='{{ route('showpro', $producto->id) }}'">Ver detalles</button>
+        </div>
     </div>
+    @empty
+    <p>No se encontraron productos.</p>
+    @endforelse
 </div>
-@empty
-<p>No se encontraron productos.</p>
-@endforelse
 
 <!-- JavaScript para filtrar productos basado en la selección de categoría -->
 <script>

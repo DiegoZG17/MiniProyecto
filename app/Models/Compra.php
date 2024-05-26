@@ -12,7 +12,10 @@ class Compra extends Model
     {
         return $this->belongsTo(User::class, 'usuario_id');
     }
-    protected $fillable = ['usuario_id', 'total', 'productos', 'estado'];
+    protected $fillable = ['usuario_id', 'total', 'productos', 'estado', 'pago'];
 
-    
+    public function vendedor()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
+    }
 }

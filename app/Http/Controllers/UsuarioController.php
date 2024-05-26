@@ -10,6 +10,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\User;
+use App\Models\Compra;
 use App\Models\Producto;
 
 
@@ -191,13 +192,44 @@ class UsuarioController extends Controller
     }
 
     public function historial()
-    {
-        $usuarios = Usuario::withCount(['productos' => function ($query) {
-            $query->where('estado', 'consignado');
-        }])->get();
+{
+    // Obtener todos los usuarios con el rol 'Vendedor'
+    $vendedores = Usuario::where('role', 'Vendedor')
+    ->withCount(['productos as productos_consignados_count' => function ($query) {
+        $query->where('estado', 'consignado');
+    }])
+    ->get();
 
-        return view('producto.usuarios', ['usuarios' => $usuarios]);
+    // Inicializar un arreglo para mantener un registro de las ventas por vendedor
+    $ventasPorVendedor = [];
+
+    // Preparar la estructura del array con todos los vendedores, inicializando las ventas a 0
+    foreach ($vendedores as $vendedor) {
+        $ventasPorVendedor[$vendedor->id] = [
+            'nombre_vendedor' => $vendedor->nombre,
+            'fecha_alta' => $vendedor->created_at ? $vendedor->created_at->toDateString() : 'Fecha no registrada', // Verificar nulidad
+            'productos_consignados' => $vendedor->productos_consignados_count,
+            'ventas' => 0 // Inicializar las ventas a 0
+        ];
     }
+
+    // Sumar las ventas entregadas
+    $ventas = Compra::where('estado', 'entregado')->get();
+
+    foreach ($ventas as $venta) {
+        $productos = json_decode($venta->productos, true);
+
+        foreach ($productos as $detalleProducto) {
+            $productoObj = Producto::where('nombre', $detalleProducto['nombre'])->first();
+
+            if ($productoObj && isset($ventasPorVendedor[$productoObj->propietario_id])) {
+                $ventasPorVendedor[$productoObj->propietario_id]['ventas']++;
+            }
+        }
+    }
+
+    return view('producto.usuarios', compact('ventasPorVendedor'));
+}
 
 
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('estado',['propuesto','consignado'])->default('propuesto');
             $table->date('fecha_publicacion');
             $table->string('motivo')->nullable()->default(null);
+            $table->string('fotos')->default(null);
             $table->text('descripcion');
             $table->integer('cantidad');
             $table->integer('precio');

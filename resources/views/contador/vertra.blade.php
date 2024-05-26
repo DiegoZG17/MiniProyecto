@@ -1,3 +1,4 @@
+@if (Auth::check() && (Auth::user()->role == '' || Auth::user()->role == 'Contador'))
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,3 +64,6 @@
 <br><br><br>
 
 
+@else
+    <p>Lo siento, solo los usuarios de tipo 'Contador' pueden acceder a esta vista.</p>
+@endif

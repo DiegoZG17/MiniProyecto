@@ -51,15 +51,5 @@ class PreguntaController extends Controller
 
 }
 
-
-
-
-    
-    public function verpre()
-    {
-        // Aquí mostrarías todas las preguntas
-        $preguntas = Pregunta::all();
-
-        return view('preguntas.respuestas', ['preguntas' => $preguntas]);
-    }
+  
 }

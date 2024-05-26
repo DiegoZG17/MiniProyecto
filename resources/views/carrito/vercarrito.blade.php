@@ -14,7 +14,6 @@
         <section class="order-details">
             <h2>Detalles de tu Orden</h2>
             <table class="table">
-                
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -38,7 +37,7 @@
 
         <section class="payment-form">
             <h2>Información de Pago</h2>
-            <form action="{{ route('compras.store') }}" method="POST">
+            <form action="{{ route('comprar.finalizar') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="name">Nombre del Titular de la Tarjeta:</label>
@@ -56,7 +55,14 @@
                     <label for="cvv">CVV:</label>
                     <input type="text" id="cvv" name="cvv" required>
                 </div>
-                <input type="hidden" name="total" value="{{ number_format(session('total'), 2) }}">
+                <input type="hidden" name="total" value="{{ session('total') }}">
+
+                @foreach (session('carrito') as $id => $details)
+                    <input type="hidden" name="productos[{{ $id }}][nombre]" value="{{ $details['nombre'] }}">
+                    <input type="hidden" name="productos[{{ $id }}][cantidad]" value="{{ $details['cantidad'] }}">
+                    <input type="hidden" name="productos[{{ $id }}][precio]" value="{{ $details['precio'] }}">
+                @endforeach
+
                 <button type="submit" class="btn btn-primary">Realizar Pago</button>
             </form>
         </section>
