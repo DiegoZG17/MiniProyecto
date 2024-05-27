@@ -146,4 +146,4 @@ Route::get('/listadepagos', [PagoController::class, 'listapagos'])->name('pagos.
 ///kardex
 Route::get('/kardex/{id}', [ProductosController::class, 'verkardex'])->name('kardex.ver');
 
-Route::get('instalar', [InstaladorController::class, 'instalar']);
+Route::get('/instalar', [InstaladorController::class, 'instalar']);
