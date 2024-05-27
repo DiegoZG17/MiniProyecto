@@ -4,6 +4,7 @@
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ContadorController;
+use App\Http\Controllers\InstaladorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagoController;
 
@@ -144,3 +145,5 @@ Route::post('/procesar-pago', [PagoController::class, 'procesarPago']);
 Route::get('/listadepagos', [PagoController::class, 'listapagos'])->name('pagos.ver');
 ///kardex
 Route::get('/kardex/{id}', [ProductosController::class, 'verkardex'])->name('kardex.ver');
+
+Route::get('instalar', [InstaladorController::class, 'instalar']);
