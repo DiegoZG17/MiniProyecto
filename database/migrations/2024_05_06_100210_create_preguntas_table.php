@@ -17,7 +17,7 @@ class CreatePreguntasTable extends Migration
             $table->text('respuesta')->nullable();
             $table->timestamp('fecha_pregunta')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('fecha_respuesta')->nullable();
-            $table->string('estado');
+             $table->string('estado')->default('pendiente');
             $table->timestamps();
 
             $table->foreign('usuario_id')->references('id')->on('usuarios');
